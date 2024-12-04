@@ -1,0 +1,17 @@
+[package]
+name = "microcbt-api"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+config = { version = "0.14.0", features = ["yaml"] }
+serde = "1.0.215"
+axum = "0.7.9"
+tokio = { version = "1.42.0", features = ["macros", "rt-multi-thread"] }
+tower-http = { version = "0.6.2", features = ["full"] }
+tracing-core = "0.1.33"
+diesel = { version = "2.2.0", features = ["postgres"] }
+dotenvy = "0.15.7"
+file-rotate = "0.7.6"
+colored = "2.1.0"
+chrono = "0.4.38"

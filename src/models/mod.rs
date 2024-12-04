@@ -1,0 +1,9 @@
+pub mod class;
+pub mod majors;
+pub mod semester;
+pub mod settings;
+pub mod roles;
+pub mod students;
+pub mod users;
+pub mod subject_groups;
+pub mod subjects;
