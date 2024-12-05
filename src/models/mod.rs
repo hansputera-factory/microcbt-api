@@ -7,3 +7,4 @@ pub mod students;
 pub mod users;
 pub mod subject_groups;
 pub mod subjects;
+pub mod auth_logs;

@@ -1,8 +1,8 @@
-use diesel::prelude::{Identifiable, Insertable, Queryable};
+use diesel::prelude::{Identifiable, Queryable};
 
 use crate::schema::tbl_semester;
 
-#[derive(Queryable, Identifiable, PartialEq, Debug, Insertable)]
+#[derive(Queryable, Identifiable, PartialEq, Debug)]
 #[diesel(table_name = tbl_semester)]
 #[diesel(check_for_backend(diesel::pg::Pg))]
 pub struct SemesterModel {

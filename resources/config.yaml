@@ -4,3 +4,9 @@ listen_port: 8080
 logger:
   format: "%d_%m_%Y"
   path: "logs"
+jwt_secret: Hello World
+auth:
+  limit: 3
+  tolerance_different: 2
+  block_different_device: true
+  block_different_useragent: true

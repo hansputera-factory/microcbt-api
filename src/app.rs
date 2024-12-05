@@ -5,7 +5,7 @@ use crate::routes;
 
 pub async fn create_app() -> Router {
     Router::new()
-        .merge(routes::index::create_route())
+        .merge(routes::index::create_routes())
         .layer(
             tower_http::trace::TraceLayer::new_for_http()
                 .make_span_with(tower_http::trace::DefaultMakeSpan::new().include_headers(true))

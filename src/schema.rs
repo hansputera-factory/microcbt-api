@@ -1,6 +1,20 @@
 // @generated automatically by Diesel CLI.
 
 diesel::table! {
+    tbl_auth_logs (id) {
+        id -> Int4,
+        #[max_length = 45]
+        client_ip -> Varchar,
+        client_user_agent -> Text,
+        client_device -> Text,
+        client_os -> Text,
+        client_browser -> Text,
+        user_id -> Int4,
+        created_at -> Nullable<Timestamp>,
+    }
+}
+
+diesel::table! {
     tbl_class (id) {
         id -> Int4,
         #[max_length = 255]
@@ -10,6 +24,15 @@ diesel::table! {
         created_at -> Nullable<Timestamp>,
         major_id -> Int4,
         semester_id -> Int4,
+    }
+}
+
+diesel::table! {
+    tbl_logs (id) {
+        id -> Int4,
+        message -> Text,
+        user_id -> Nullable<Int4>,
+        created_at -> Nullable<Timestamp>,
     }
 }
 
@@ -161,6 +184,8 @@ diesel::table! {
     tbl_users (id) {
         id -> Int4,
         #[max_length = 255]
+        name -> Varchar,
+        #[max_length = 255]
         username -> Varchar,
         #[max_length = 255]
         password -> Varchar,
@@ -171,8 +196,10 @@ diesel::table! {
     }
 }
 
+diesel::joinable!(tbl_auth_logs -> tbl_users (user_id));
 diesel::joinable!(tbl_class -> tbl_majors (major_id));
 diesel::joinable!(tbl_class -> tbl_semester (semester_id));
+diesel::joinable!(tbl_logs -> tbl_users (user_id));
 diesel::joinable!(tbl_majors -> tbl_semester (semester_id));
 diesel::joinable!(tbl_students -> tbl_class (class_id));
 diesel::joinable!(tbl_students -> tbl_semester (semester_id));
@@ -186,7 +213,9 @@ diesel::joinable!(tbl_users -> tbl_roles (role_id));
 diesel::joinable!(tbl_users -> tbl_semester (semester_id));
 
 diesel::allow_tables_to_appear_in_same_query!(
+    tbl_auth_logs,
     tbl_class,
+    tbl_logs,
     tbl_majors,
     tbl_roles,
     tbl_semester,

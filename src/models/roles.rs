@@ -1,8 +1,8 @@
-use diesel::{prelude::{Insertable, Queryable}, Selectable};
+use diesel::{prelude::Queryable, Selectable};
 
 use crate::schema::tbl_roles;
 
-#[derive(Queryable, Selectable, PartialEq, Debug, Insertable)]
+#[derive(Queryable, Selectable, PartialEq, Debug)]
 #[diesel(table_name = tbl_roles)]
 #[diesel(check_for_backend(diesel::pg::Pg))]
 pub struct RolesModel {

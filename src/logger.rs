@@ -10,7 +10,7 @@ pub struct AppLogger {
 }
 
 impl AppLogger {
-    pub fn new(log_cfg: config::config::ConfigLoggerStruct) -> Self {
+    pub fn new(log_cfg: &config::config::ConfigLoggerStruct) -> Self {
         let file_name_daily_timestamp = chrono::Local::now().format(&log_cfg.format).to_string();
 
         let log = FileRotate::new(

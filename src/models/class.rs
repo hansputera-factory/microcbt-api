@@ -1,8 +1,8 @@
-use diesel::{prelude::{Associations, Identifiable, Insertable, Queryable}, Selectable};
+use diesel::{prelude::{Associations, Identifiable, Queryable}, Selectable};
 
 use crate::schema::tbl_class;
 
-#[derive(Queryable, Identifiable, Selectable, PartialEq, Debug, Associations, Insertable)]
+#[derive(Queryable, Identifiable, Selectable, PartialEq, Debug, Associations)]
 #[diesel(table_name = tbl_class)]
 #[diesel(belongs_to(crate::models::semester::SemesterModel, foreign_key = semester_id))]
 #[diesel(check_for_backend(diesel::pg::Pg))]
