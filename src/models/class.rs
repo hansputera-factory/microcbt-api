@@ -13,4 +13,5 @@ pub struct ClassModel {
     pub students_count: i32,
     pub major_id: i32,
     pub semester_id: i32,
+    pub created_at: Option<chrono::NaiveDateTime>
 }

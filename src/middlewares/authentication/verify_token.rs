@@ -6,19 +6,19 @@ use axum::middleware::Next;
 use crate::middlewares::authentication::structs::AuthenticationError;
 use crate::services;
 
-pub async fn verify_token_middleware(mut request: Request, next: Next) -> Result<Response<Body>, AuthenticationError> {
-    let bearer_token_header = request.headers_mut().get(
+pub async fn verify_token_middleware(request: Request, next: Next) -> Result<Response<Body>, AuthenticationError> {
+    let bearer_token_header = request.headers().get(
         AUTHORIZATION
     );
 
     let bearer_token_header = match bearer_token_header {
         Some(token) => token.to_str().map_err(|_| AuthenticationError {
             message: "forbidden access".to_string(),
-            status_code: StatusCode::FORBIDDEN,
+            status_code: StatusCode::FORBIDDEN.as_u16(),
         })?,
         None => return Err(AuthenticationError {
             message: "forbidden access".to_string(),
-            status_code: StatusCode::FORBIDDEN,
+            status_code: StatusCode::FORBIDDEN.as_u16(),
         })
     };
 
@@ -29,7 +29,7 @@ pub async fn verify_token_middleware(mut request: Request, next: Next) -> Result
         Some(token) => token,
         None => return Err(AuthenticationError {
             message: "missing token identifier".to_string(),
-            status_code: StatusCode::FORBIDDEN,
+            status_code: StatusCode::FORBIDDEN.as_u16(),
         })
     };
 
@@ -38,14 +38,14 @@ pub async fn verify_token_middleware(mut request: Request, next: Next) -> Result
         Some(token) => token,
         None => return Err(AuthenticationError {
             message: "missing token value".to_string(),
-            status_code: StatusCode::FORBIDDEN,
+            status_code: StatusCode::FORBIDDEN.as_u16(),
         })
     };
 
     if !services::authentication::verify::verify_token(token.to_string()) {
         return Err(AuthenticationError {
             message: "token invalid".to_string(),
-            status_code: StatusCode::FORBIDDEN,
+            status_code: StatusCode::FORBIDDEN.as_u16(),
         })
     };
 

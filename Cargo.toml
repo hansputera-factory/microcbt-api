@@ -7,11 +7,13 @@ edition = "2021"
 config = { version = "0.14.0", features = ["yaml"] }
 serde = "1.0.215"
 axum = "0.7.9"
+axum-extra = { version = "0.10.0", features = ["typed-header"] }
 tokio = { version = "1.42.0", features = ["macros", "rt-multi-thread"] }
 tower-http = { version = "0.6.2", features = ["full"] }
 tracing-core = "0.1.33"
-diesel = { version = "2.2.0", features = ["postgres"] }
+diesel = { version = "2.2.0", features = ["postgres", "chrono"] }
 dotenvy = "0.15.7"
+axum-macros = "0.5.0"
 file-rotate = "0.7.6"
 colored = "2.1.0"
 chrono = "0.4.38"

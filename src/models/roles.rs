@@ -28,4 +28,5 @@ pub struct RolesModel {
     pub is_moderator: Option<bool>,
     pub is_teacher: Option<bool>,
     pub is_student: Option<bool>,
+    pub created_at: Option<chrono::NaiveDateTime>
 }

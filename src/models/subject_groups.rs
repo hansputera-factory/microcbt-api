@@ -11,4 +11,5 @@ pub struct SubjectGroupsModel {
     pub name: String,
     pub is_universal: Option<bool>,
     pub semester_id: i32,
+    pub created_at: Option<chrono::NaiveDateTime>
 }

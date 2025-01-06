@@ -17,4 +17,5 @@ pub struct StudentsModel {
     pub class_id: i32,
     pub semester_id: i32,
     pub user_id: i32,
+    pub created_at: Option<chrono::NaiveDateTime>
 }

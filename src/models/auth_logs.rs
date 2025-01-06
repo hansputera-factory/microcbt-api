@@ -4,7 +4,8 @@ use crate::schema::tbl_auth_logs;
 
 #[derive(Queryable, Identifiable, Selectable, Debug, PartialEq)]
 #[diesel(table_name = tbl_auth_logs)]
-#[diesel(belongs_to(crate::models::UsersModel, foreign_key = "user_id"))]
+#[diesel(belongs_to(crate::models::UsersModel, foreign_key = user_id))]
+#[diesel(check_for_backend(diesel::pg::Pg))]
 pub struct AuthLogsModel {
     pub id: i32,
 

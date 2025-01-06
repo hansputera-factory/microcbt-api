@@ -2,7 +2,7 @@ use diesel::{prelude::{Identifiable, Queryable}, Selectable};
 
 use crate::schema::tbl_users;
 
-#[derive(Queryable, Identifiable, PartialEq, Debug, Selectable)]
+#[derive(Selectable, Queryable, Identifiable, Debug, PartialEq)]
 #[diesel(table_name = tbl_users)]
 #[diesel(belongs_to(crate::models::role::RoleModel, foreign_key = role_id))]
 #[diesel(belongs_to(crate::models::semester::SemesterModel, foreign_key = semester_id))]
@@ -17,4 +17,5 @@ pub struct UsersModel {
     pub is_active: Option<bool>,
     pub role_id: i32,
     pub semester_id: i32,
+    pub created_at: Option<chrono::NaiveDateTime>
 }

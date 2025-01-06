@@ -10,4 +10,5 @@ pub struct SemesterModel {
     pub name: String,
     pub code: String,
     pub is_active: Option<bool>,
+    pub created_at: Option<chrono::NaiveDateTime>
 }

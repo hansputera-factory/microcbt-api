@@ -14,4 +14,5 @@ pub struct SubjectsModel {
     pub is_active: Option<bool>,
     pub semester_id: i32,
     pub subject_group_id: i32,
+    pub created_at: Option<chrono::NaiveDateTime>
 }

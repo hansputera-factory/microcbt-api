@@ -12,4 +12,5 @@ pub struct MajorsModel {
     pub code: String,
 
     pub semester_id: i32,
+    pub created_at: Option<chrono::NaiveDateTime>
 }

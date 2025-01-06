@@ -1,3 +1,5 @@
+use std::net::SocketAddr;
+
 use logger::AppLogger;
 use state::CONFIG_STATES;
 
@@ -13,6 +15,7 @@ mod services;
 mod middlewares;
 mod dto;
 mod entities;
+mod enums;
 
 #[tokio::main]
 async fn main() {
@@ -37,5 +40,5 @@ async fn main() {
     let listener = tokio::net::TcpListener::bind(
         format!("{}:{}", CONFIG_STATES.listen_host, CONFIG_STATES.listen_port)
     ).await.unwrap();
-    axum::serve(listener, app).await.unwrap();
+    axum::serve(listener, app.into_make_service_with_connect_info::<SocketAddr>()).await.unwrap();
 }
